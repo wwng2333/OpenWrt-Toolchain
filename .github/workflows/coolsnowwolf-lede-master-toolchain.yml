@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Coolsnowwolf/Lede Toolchain Image
+name: Coolsnowwolf/Lede Toolchain Build
 on:
   workflow_dispatch:
 #  schedule:
@@ -57,13 +57,13 @@ jobs:
         run: |
           cd openwrt
           echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
-          echo "::set-output name=OPENWRTROOT::$(echo $PWD)"
-          ./scripts/feeds update -a && ./scripts/feeds install -a
+          ./scripts/feeds update -a 
+          ./scripts/feeds install -a
 
-      - name: Download Package
+      - name: Download Packages
         env:
           PLATFORM: ${{ matrix.PLATFORM }}
-        id: package
+        id: download
         run: |
           mv config/$PLATFORM.config $OPENWRTROOT/.config
           cd $OPENWRTROOT
@@ -108,11 +108,11 @@ jobs:
           export FILE_NAME="toolchain-image-$REPO_USER-$REPO_NAME-$REPO_BRANCH-$TARGET-$SUBTARGET.img"
           mksquashfs openwrt $FILE_NAME -force-gid 1001 -force-uid 1001 -comp xz
           mkdir output
-          mv toolchain* output
+          mv $FILE_NAME output
           echo "::set-output name=RELEASE_TAG::$REPO_USER-$REPO_NAME-$REPO_BRANCH"
           df -hT $PWD
 
-      - name: Upload Images To Release
+      - name: Upload Image To Release
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
