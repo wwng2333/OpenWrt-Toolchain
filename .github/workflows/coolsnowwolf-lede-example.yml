@@ -74,6 +74,7 @@ jobs:
         run: |
           cd $OPENWRTROOT
           echo -e "$(nproc) thread compile"
+          make tools/compile -j$(nproc) || make tools/compile -j1 V=s
           make target/compile -j$(nproc) || make target/compile -j1 V=s
           make diffconfig
           make package/compile -j$(nproc) || make package/compile -j1 V=s

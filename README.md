@@ -2,13 +2,13 @@
 
 ## 项目介绍
 
-本项目旨在生成预编译 OpenWrt 工具链 (tools + toolchain) 且开箱即用的镜像文件。
+本项目旨在生成预编译 OpenWrt 工具链 (toolchain) 且开箱即用的镜像文件。
 
 镜像文件有以下特性:
 
 - 镜像采用 squashfs 格式，最大限度减小文件体积和下载时间成本
 - 为 Github Action 优化，在 Github Action 中开箱即用
-- 在 Github Action 流程中可节省 40~60 分钟的 tools 以及 toolchain 编译时间
+- 在 Github Action 流程中可节省 30~40 分钟的 toolchain 编译时间
 - 一键生成多平台镜像并自动发布至仓库 Release
 - 提供适用于本项目镜像的 Github Action [示例文件](https://github.com/SuLingGG/OpenWrt-Toolchain/blob/main/.github/workflows/coolsnowwolf-lede-example.yml)
 
