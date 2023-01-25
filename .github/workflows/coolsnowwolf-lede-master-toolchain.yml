@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        PLATFORM: [bcm27xx/bcm2708, bcm27xx/bcm2709, bcm27xx/bcm2710, bcm27xx/bcm2711, ipq40xx/generic, rockchip/armv8, x86/64, x86/generic]
+        PLATFORM: [ath79/generic]
 
     steps:
       - name: Checkout
