@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        PLATFORM: [ath79/generic]
+        PLATFORM: [ath79/generic, ramips/mt7621]
 
     steps:
       - name: Checkout
